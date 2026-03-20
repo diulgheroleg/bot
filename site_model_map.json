@@ -1,0 +1,2102 @@
+{
+  "0": {
+    "code": "0",
+    "model": "Samsung Galaxy A02",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a02"
+  },
+  "1": {
+    "code": "1",
+    "model": "Samsung Galaxy A10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a10"
+  },
+  "2": {
+    "code": "2",
+    "model": "Samsung Galaxy A12 (2021)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a12-2021"
+  },
+  "3": {
+    "code": "3",
+    "model": "Samsung Galaxy A20",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a20"
+  },
+  "4": {
+    "code": "4",
+    "model": "Samsung Galaxy A21s",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a21s"
+  },
+  "5": {
+    "code": "5",
+    "model": "Samsung Galaxy A22",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a22"
+  },
+  "6": {
+    "code": "6",
+    "model": "Samsung Galaxy A23",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a23"
+  },
+  "7": {
+    "code": "7",
+    "model": "Samsung Galaxy A3 (2016)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a3-2016"
+  },
+  "8": {
+    "code": "8",
+    "model": "Samsung Galaxy A3 (2017)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a3-2017"
+  },
+  "9": {
+    "code": "9",
+    "model": "Samsung Galaxy A30",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a30"
+  },
+  "a": {
+    "code": "a",
+    "model": "Samsung Galaxy A30s",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a30s"
+  },
+  "b": {
+    "code": "b",
+    "model": "Samsung Galaxy A31",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a31"
+  },
+  "c": {
+    "code": "c",
+    "model": "Samsung Galaxy A32",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a32"
+  },
+  "d": {
+    "code": "d",
+    "model": "Samsung Galaxy A33",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a33"
+  },
+  "e": {
+    "code": "e",
+    "model": "Samsung Galaxy A40",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a40"
+  },
+  "f": {
+    "code": "f",
+    "model": "Samsung Galaxy A41",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a41"
+  },
+  "g": {
+    "code": "g",
+    "model": "Samsung Galaxy A5 (2015)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a5-2015"
+  },
+  "h": {
+    "code": "h",
+    "model": "Samsung Galaxy A50",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a50"
+  },
+  "i": {
+    "code": "i",
+    "model": "Samsung Galaxy A51",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a51"
+  },
+  "j": {
+    "code": "j",
+    "model": "Samsung Galaxy A52",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a52"
+  },
+  "k": {
+    "code": "k",
+    "model": "Samsung Galaxy A53",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a53"
+  },
+  "l": {
+    "code": "l",
+    "model": "Samsung Galaxy A70",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a70"
+  },
+  "m": {
+    "code": "m",
+    "model": "Samsung Galaxy A71",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a71"
+  },
+  "n": {
+    "code": "n",
+    "model": "Samsung Galaxy A72",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a72"
+  },
+  "o": {
+    "code": "o",
+    "model": "Samsung Galaxy A73",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a73"
+  },
+  "p": {
+    "code": "p",
+    "model": "Samsung Galaxy J3 (2016)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j3-2016"
+  },
+  "q": {
+    "code": "q",
+    "model": "Samsung Galaxy J3 (2017)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j3-2017"
+  },
+  "r": {
+    "code": "r",
+    "model": "Samsung Galaxy J4 (2018)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j4-2018"
+  },
+  "s": {
+    "code": "s",
+    "model": "Samsung Galaxy J5 (2015)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j5-2015"
+  },
+  "t": {
+    "code": "t",
+    "model": "Samsung Galaxy J5 (2016)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j5-2016"
+  },
+  "u": {
+    "code": "u",
+    "model": "Samsung Galaxy J5 (2017)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j5-2017"
+  },
+  "v": {
+    "code": "v",
+    "model": "Samsung Galaxy J6",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j6"
+  },
+  "w": {
+    "code": "w",
+    "model": "Samsung Galaxy J7 (2016)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j7-2016"
+  },
+  "x": {
+    "code": "x",
+    "model": "Samsung Galaxy J7 (2017)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j7-2017"
+  },
+  "y": {
+    "code": "y",
+    "model": "Samsung Galaxy J8",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-j8"
+  },
+  "z": {
+    "code": "z",
+    "model": "Samsung Galaxy M12",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-m12"
+  },
+  "10": {
+    "code": "10",
+    "model": "Samsung Galaxy M21",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-m21"
+  },
+  "11": {
+    "code": "11",
+    "model": "Samsung Galaxy M31",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-m31"
+  },
+  "12": {
+    "code": "12",
+    "model": "Samsung Galaxy M31s",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-m31s"
+  },
+  "13": {
+    "code": "13",
+    "model": "Samsung Galaxy Note 10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-note-10"
+  },
+  "14": {
+    "code": "14",
+    "model": "Samsung Galaxy Note 10 Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-note-10-plus"
+  },
+  "15": {
+    "code": "15",
+    "model": "Samsung Galaxy Note 20",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-note-20"
+  },
+  "16": {
+    "code": "16",
+    "model": "Samsung Galaxy Note 20 Ultra",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-note-20-ultra"
+  },
+  "17": {
+    "code": "17",
+    "model": "Samsung Galaxy Note 9",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-note-9"
+  },
+  "18": {
+    "code": "18",
+    "model": "Samsung Galaxy S10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s10"
+  },
+  "19": {
+    "code": "19",
+    "model": "Samsung Galaxy S10 Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s10-plus"
+  },
+  "1a": {
+    "code": "1a",
+    "model": "Samsung Galaxy S10e",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s10e"
+  },
+  "1b": {
+    "code": "1b",
+    "model": "Samsung Galaxy S20",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s20"
+  },
+  "1c": {
+    "code": "1c",
+    "model": "Samsung Galaxy S20 Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s20-plus"
+  },
+  "1d": {
+    "code": "1d",
+    "model": "Samsung Galaxy S20 Ultra",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s20-ultra"
+  },
+  "1e": {
+    "code": "1e",
+    "model": "Samsung Galaxy S21",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s21"
+  },
+  "1f": {
+    "code": "1f",
+    "model": "Samsung Galaxy S21 Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s21-plus"
+  },
+  "1g": {
+    "code": "1g",
+    "model": "Samsung Galaxy S21 Ultra",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s21-ultra"
+  },
+  "1h": {
+    "code": "1h",
+    "model": "Samsung Galaxy S21 FE",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s21-fe"
+  },
+  "1i": {
+    "code": "1i",
+    "model": "Samsung Galaxy S22",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s22"
+  },
+  "1j": {
+    "code": "1j",
+    "model": "Samsung Galaxy S22 Ultra",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s22-ultra"
+  },
+  "1k": {
+    "code": "1k",
+    "model": "Samsung Galaxy S23",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s23"
+  },
+  "1l": {
+    "code": "1l",
+    "model": "Samsung Galaxy S23 Ultra",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s23-ultra"
+  },
+  "1m": {
+    "code": "1m",
+    "model": "Samsung Galaxy S6 Edge Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s6-edge-plus"
+  },
+  "1n": {
+    "code": "1n",
+    "model": "Samsung Galaxy S7 Edge",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s7-edge"
+  },
+  "1o": {
+    "code": "1o",
+    "model": "Samsung Galaxy S8",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s8"
+  },
+  "1p": {
+    "code": "1p",
+    "model": "Samsung Galaxy S8 Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s8-plus"
+  },
+  "1q": {
+    "code": "1q",
+    "model": "Samsung Galaxy S9",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s9"
+  },
+  "1r": {
+    "code": "1r",
+    "model": "Samsung Galaxy S9 Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s9-plus"
+  },
+  "1s": {
+    "code": "1s",
+    "model": "Samsung Galaxy Z Flip",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-z-flip"
+  },
+  "1t": {
+    "code": "1t",
+    "model": "Samsung Galaxy Z Fold 4",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-z-fold-4"
+  },
+  "1u": {
+    "code": "1u",
+    "model": "Samsung Galaxy S20 FE",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-s20-fe"
+  },
+  "1v": {
+    "code": "1v",
+    "model": "Samsung Galaxy A32 5G",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a32-5g"
+  },
+  "1w": {
+    "code": "1w",
+    "model": "Samsung Galaxy A54",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a54"
+  },
+  "1x": {
+    "code": "1x",
+    "model": "Samsung Galaxy A15",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a15"
+  },
+  "1y": {
+    "code": "1y",
+    "model": "Samsung Galaxy A13",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "samsung-galaxy-a13"
+  },
+  "1z": {
+    "code": "1z",
+    "model": "Honor 10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-10"
+  },
+  "20": {
+    "code": "20",
+    "model": "Honor 10 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-10-lite"
+  },
+  "21": {
+    "code": "21",
+    "model": "Honor 10i",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-10i"
+  },
+  "22": {
+    "code": "22",
+    "model": "Honor 10x Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-10x-lite"
+  },
+  "23": {
+    "code": "23",
+    "model": "Honor 20",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-20"
+  },
+  "24": {
+    "code": "24",
+    "model": "Honor 20 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-20-lite"
+  },
+  "25": {
+    "code": "25",
+    "model": "Honor 20 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-20-pro"
+  },
+  "26": {
+    "code": "26",
+    "model": "Honor 20E",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-20e"
+  },
+  "27": {
+    "code": "27",
+    "model": "Honor 20i",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-20i"
+  },
+  "28": {
+    "code": "28",
+    "model": "Honor 20S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-20s"
+  },
+  "29": {
+    "code": "29",
+    "model": "Honor 30",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-30"
+  },
+  "2a": {
+    "code": "2a",
+    "model": "Honor 30 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-30-pro"
+  },
+  "2b": {
+    "code": "2b",
+    "model": "Honor 30 Pro Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-30-pro-plus"
+  },
+  "2c": {
+    "code": "2c",
+    "model": "Honor 30i",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-30i"
+  },
+  "2d": {
+    "code": "2d",
+    "model": "Honor 30S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-30s"
+  },
+  "2e": {
+    "code": "2e",
+    "model": "Honor 50",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-50"
+  },
+  "2f": {
+    "code": "2f",
+    "model": "Honor 50 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-50-lite"
+  },
+  "2g": {
+    "code": "2g",
+    "model": "Honor 5X",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-5x"
+  },
+  "2h": {
+    "code": "2h",
+    "model": "Honor 6",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-6"
+  },
+  "2i": {
+    "code": "2i",
+    "model": "Honor 6X",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-6x"
+  },
+  "2j": {
+    "code": "2j",
+    "model": "Honor 7",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-7"
+  },
+  "2k": {
+    "code": "2k",
+    "model": "Honor 70",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-70"
+  },
+  "2l": {
+    "code": "2l",
+    "model": "Honor 70 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-70-pro"
+  },
+  "2m": {
+    "code": "2m",
+    "model": "Honor 70 Pro Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-70-pro-plus"
+  },
+  "2n": {
+    "code": "2n",
+    "model": "Honor 7A",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-7a"
+  },
+  "2o": {
+    "code": "2o",
+    "model": "Honor 7C",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-7c"
+  },
+  "2p": {
+    "code": "2p",
+    "model": "Honor 7X",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-7x"
+  },
+  "2q": {
+    "code": "2q",
+    "model": "Honor 8",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-8"
+  },
+  "2r": {
+    "code": "2r",
+    "model": "Honor 8A",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-8a"
+  },
+  "2s": {
+    "code": "2s",
+    "model": "Honor 8C",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-8c"
+  },
+  "2t": {
+    "code": "2t",
+    "model": "Honor 8S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-8s"
+  },
+  "2u": {
+    "code": "2u",
+    "model": "Honor 8X",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-8x"
+  },
+  "2v": {
+    "code": "2v",
+    "model": "Honor 9",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-9"
+  },
+  "2w": {
+    "code": "2w",
+    "model": "Honor 9 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-9-lite"
+  },
+  "2x": {
+    "code": "2x",
+    "model": "Honor 9A",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-9a"
+  },
+  "2y": {
+    "code": "2y",
+    "model": "Honor 9C",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-9c"
+  },
+  "2z": {
+    "code": "2z",
+    "model": "Honor 9S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-9s"
+  },
+  "30": {
+    "code": "30",
+    "model": "Honor 9X",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-9x"
+  },
+  "31": {
+    "code": "31",
+    "model": "Honor View 20",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-view-20"
+  },
+  "32": {
+    "code": "32",
+    "model": "Honor X8",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-x8"
+  },
+  "33": {
+    "code": "33",
+    "model": "Honor X9a",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-x9a"
+  },
+  "34": {
+    "code": "34",
+    "model": "Honor X7",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "honor-x7"
+  },
+  "35": {
+    "code": "35",
+    "model": "Xiaomi 11 Lite NE",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-11-lite-ne"
+  },
+  "36": {
+    "code": "36",
+    "model": "Xiaomi 11T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-11t"
+  },
+  "37": {
+    "code": "37",
+    "model": "Xiaomi 11T Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-11t-pro"
+  },
+  "38": {
+    "code": "38",
+    "model": "Xiaomi 12",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-12"
+  },
+  "39": {
+    "code": "39",
+    "model": "Xiaomi 12 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-12-pro"
+  },
+  "3a": {
+    "code": "3a",
+    "model": "Xiaomi 12X",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-12x"
+  },
+  "3b": {
+    "code": "3b",
+    "model": "Xiaomi 13",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-13"
+  },
+  "3c": {
+    "code": "3c",
+    "model": "Xiaomi 13 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-13-lite"
+  },
+  "3d": {
+    "code": "3d",
+    "model": "Xiaomi Mi 10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-10"
+  },
+  "3e": {
+    "code": "3e",
+    "model": "Xiaomi Mi 10T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-10t"
+  },
+  "3f": {
+    "code": "3f",
+    "model": "Xiaomi Mi 10T Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-10t-pro"
+  },
+  "3g": {
+    "code": "3g",
+    "model": "Xiaomi Mi 11 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-11-lite"
+  },
+  "3h": {
+    "code": "3h",
+    "model": "Xiaomi Mi 11 Lite 5G",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-11-lite-5g"
+  },
+  "3i": {
+    "code": "3i",
+    "model": "Xiaomi Mi 11 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-11-pro"
+  },
+  "3j": {
+    "code": "3j",
+    "model": "Xiaomi Mi 11 Ultra",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-11-ultra"
+  },
+  "3k": {
+    "code": "3k",
+    "model": "Xiaomi Mi 9 SE",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-9-se"
+  },
+  "3l": {
+    "code": "3l",
+    "model": "Xiaomi Mi 9T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-9t"
+  },
+  "3m": {
+    "code": "3m",
+    "model": "Xiaomi Mi 9T Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-9t-pro"
+  },
+  "3n": {
+    "code": "3n",
+    "model": "Xiaomi Mi Note 10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-note-10"
+  },
+  "3o": {
+    "code": "3o",
+    "model": "Xiaomi Mi Note 10 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-note-10-lite"
+  },
+  "3p": {
+    "code": "3p",
+    "model": "Xiaomi Mi Note 10 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-note-10-pro"
+  },
+  "3q": {
+    "code": "3q",
+    "model": "Xiaomi Mi Note 2",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-mi-note-2"
+  },
+  "3r": {
+    "code": "3r",
+    "model": "Xiaomi Poco X5",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-x5"
+  },
+  "3s": {
+    "code": "3s",
+    "model": "Xiaomi Poco X5 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-x5-pro"
+  },
+  "3t": {
+    "code": "3t",
+    "model": "Xiaomi Redmi 5",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-5"
+  },
+  "3u": {
+    "code": "3u",
+    "model": "Xiaomi Redmi 5 Plus",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-5-plus"
+  },
+  "3v": {
+    "code": "3v",
+    "model": "Xiaomi Redmi 7",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-7"
+  },
+  "3w": {
+    "code": "3w",
+    "model": "Xiaomi Redmi 7a",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-7a"
+  },
+  "3x": {
+    "code": "3x",
+    "model": "Xiaomi Redmi 8",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-8"
+  },
+  "3y": {
+    "code": "3y",
+    "model": "Xiaomi Redmi 9",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-9"
+  },
+  "3z": {
+    "code": "3z",
+    "model": "Xiaomi Redmi 9A",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-9a"
+  },
+  "40": {
+    "code": "40",
+    "model": "Xiaomi Redmi 9C",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-9c"
+  },
+  "41": {
+    "code": "41",
+    "model": "Xiaomi Redmi 9T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-9t"
+  },
+  "42": {
+    "code": "42",
+    "model": "Xiaomi Redmi Note 10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-10"
+  },
+  "43": {
+    "code": "43",
+    "model": "Xiaomi Redmi Note 10 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-10-pro"
+  },
+  "44": {
+    "code": "44",
+    "model": "Xiaomi Redmi Note 4",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-4"
+  },
+  "45": {
+    "code": "45",
+    "model": "Xiaomi Redmi Note 5",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-5"
+  },
+  "46": {
+    "code": "46",
+    "model": "Xiaomi Redmi Note 7",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-7"
+  },
+  "47": {
+    "code": "47",
+    "model": "Xiaomi Redmi Note 8",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-8"
+  },
+  "48": {
+    "code": "48",
+    "model": "Xiaomi Redmi Note 8 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-8-pro"
+  },
+  "49": {
+    "code": "49",
+    "model": "Xiaomi Redmi Note 8T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-8t"
+  },
+  "4a": {
+    "code": "4a",
+    "model": "Xiaomi Redmi Note 9",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-9"
+  },
+  "4b": {
+    "code": "4b",
+    "model": "Xiaomi Redmi Note 9 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-9-pro"
+  },
+  "4c": {
+    "code": "4c",
+    "model": "Xiaomi Redmi Note 9S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-9s"
+  },
+  "4d": {
+    "code": "4d",
+    "model": "Xiaomi Redmi Note 9T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-9t"
+  },
+  "4e": {
+    "code": "4e",
+    "model": "Xiaomi Redmi 10",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-10"
+  },
+  "4f": {
+    "code": "4f",
+    "model": "Xiaomi Redmi 10c",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-10c"
+  },
+  "4g": {
+    "code": "4g",
+    "model": "Xiaomi Redmi 12c",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-12c"
+  },
+  "4h": {
+    "code": "4h",
+    "model": "Xiaomi Redmi 12",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-12"
+  },
+  "4i": {
+    "code": "4i",
+    "model": "Xiaomi Redmi Note 10S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-10s"
+  },
+  "4j": {
+    "code": "4j",
+    "model": "Xiaomi Redmi Note",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note"
+  },
+  "4k": {
+    "code": "4k",
+    "model": "Xiaomi 11",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-11"
+  },
+  "4l": {
+    "code": "4l",
+    "model": "Xiaomi 11 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-11-pro"
+  },
+  "4m": {
+    "code": "4m",
+    "model": "Xiaomi Redmi Note 11S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-11s"
+  },
+  "4n": {
+    "code": "4n",
+    "model": "Xiaomi Redmi Note 12S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-12s"
+  },
+  "4o": {
+    "code": "4o",
+    "model": "Xiaomi Poco F3",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-f3"
+  },
+  "4p": {
+    "code": "4p",
+    "model": "Xiaomi Poco M3",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-m3"
+  },
+  "4q": {
+    "code": "4q",
+    "model": "Xiaomi Poco M4 Pro 4G",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-m4-pro-4g"
+  },
+  "4r": {
+    "code": "4r",
+    "model": "Xiaomi Poco M4 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-m4-pro"
+  },
+  "4s": {
+    "code": "4s",
+    "model": "Xiaomi Poco X3 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-x3-pro"
+  },
+  "4t": {
+    "code": "4t",
+    "model": "Xiaomi Poco X3",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-x3"
+  },
+  "4u": {
+    "code": "4u",
+    "model": "Xiaomi Redmi 13C",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-13c"
+  },
+  "4v": {
+    "code": "4v",
+    "model": "Xiaomi Redmi A3",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-a3"
+  },
+  "4w": {
+    "code": "4w",
+    "model": "Xiaomi Redmi 14C",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-14c"
+  },
+  "4x": {
+    "code": "4x",
+    "model": "Xiaomi Poco M5",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-m5"
+  },
+  "4y": {
+    "code": "4y",
+    "model": "Xiaomi 13 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-13-pro"
+  },
+  "4z": {
+    "code": "4z",
+    "model": "Xiaomi Poco M5s",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-m5s"
+  },
+  "50": {
+    "code": "50",
+    "model": "Xiaomi Poco C65",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-c65"
+  },
+  "51": {
+    "code": "51",
+    "model": "Xiaomi Poco X6 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-x6-pro"
+  },
+  "52": {
+    "code": "52",
+    "model": "Xiaomi Poco C3",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-c3"
+  },
+  "53": {
+    "code": "53",
+    "model": "Xiaomi Redmi 13",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-13"
+  },
+  "54": {
+    "code": "54",
+    "model": "Xiaomi Poco X4 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-x4-pro"
+  },
+  "55": {
+    "code": "55",
+    "model": "Xiaomi Poco M4 Pro 5G",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-m4-pro-5g"
+  },
+  "56": {
+    "code": "56",
+    "model": "Xiaomi Redmi Note 14",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-redmi-note-14"
+  },
+  "57": {
+    "code": "57",
+    "model": "Xiaomi 12T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-12t"
+  },
+  "58": {
+    "code": "58",
+    "model": "Xiaomi 13T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-13t"
+  },
+  "59": {
+    "code": "59",
+    "model": "Xiaomi Poco F4",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "xiaomi-poco-f4"
+  },
+  "5a": {
+    "code": "5a",
+    "model": "Huawei Ascend P7",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-ascend-p7"
+  },
+  "5b": {
+    "code": "5b",
+    "model": "Huawei Mate 20 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-mate-20-pro"
+  },
+  "5c": {
+    "code": "5c",
+    "model": "Huawei Mate 20 X",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-mate-20-x"
+  },
+  "5d": {
+    "code": "5d",
+    "model": "Huawei Mate 30 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-mate-30-pro"
+  },
+  "5e": {
+    "code": "5e",
+    "model": "Huawei Mate 40 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-mate-40-pro"
+  },
+  "5f": {
+    "code": "5f",
+    "model": "Huawei Mate Xs",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-mate-xs"
+  },
+  "5g": {
+    "code": "5g",
+    "model": "Huawei Nova",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova"
+  },
+  "5h": {
+    "code": "5h",
+    "model": "Huawei Nova 10 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-10-pro"
+  },
+  "5i": {
+    "code": "5i",
+    "model": "Huawei Nova 2s",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-2s"
+  },
+  "5j": {
+    "code": "5j",
+    "model": "Huawei Nova 3",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-3"
+  },
+  "5k": {
+    "code": "5k",
+    "model": "Huawei Nova 5T",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-5t"
+  },
+  "5l": {
+    "code": "5l",
+    "model": "Huawei Nova 8",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-8"
+  },
+  "5m": {
+    "code": "5m",
+    "model": "Huawei Nova 8i",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-8i"
+  },
+  "5n": {
+    "code": "5n",
+    "model": "Huawei Nova 9",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-9"
+  },
+  "5o": {
+    "code": "5o",
+    "model": "Huawei Nova Y90",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-nova-y90"
+  },
+  "5p": {
+    "code": "5p",
+    "model": "Huawei P20",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p20"
+  },
+  "5q": {
+    "code": "5q",
+    "model": "Huawei P20 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p20-lite"
+  },
+  "5r": {
+    "code": "5r",
+    "model": "Huawei P20 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p20-pro"
+  },
+  "5s": {
+    "code": "5s",
+    "model": "Huawei P30",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p30"
+  },
+  "5t": {
+    "code": "5t",
+    "model": "Huawei P30 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p30-lite"
+  },
+  "5u": {
+    "code": "5u",
+    "model": "Huawei P30 lite New Edition",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p30-lite-new-edition"
+  },
+  "5v": {
+    "code": "5v",
+    "model": "Huawei P30 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p30-pro"
+  },
+  "5w": {
+    "code": "5w",
+    "model": "Huawei P40",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p40"
+  },
+  "5x": {
+    "code": "5x",
+    "model": "Huawei P40 Lite",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p40-lite"
+  },
+  "5y": {
+    "code": "5y",
+    "model": "Huawei P40 Lite E",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p40-lite-e"
+  },
+  "5z": {
+    "code": "5z",
+    "model": "Huawei P40 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p40-pro"
+  },
+  "60": {
+    "code": "60",
+    "model": "Huawei P40 Pro+",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p40-pro"
+  },
+  "61": {
+    "code": "61",
+    "model": "Huawei P50 Pro",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p50-pro"
+  },
+  "62": {
+    "code": "62",
+    "model": "Huawei P Smart",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p-smart"
+  },
+  "63": {
+    "code": "63",
+    "model": "Huawei P Smart 2019",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p-smart-2019"
+  },
+  "64": {
+    "code": "64",
+    "model": "Huawei P Smart 2021",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p-smart-2021"
+  },
+  "65": {
+    "code": "65",
+    "model": "Huawei P Smart Z",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-p-smart-z"
+  },
+  "66": {
+    "code": "66",
+    "model": "Huawei Y5 (2019)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y5-2019"
+  },
+  "67": {
+    "code": "67",
+    "model": "Huawei Y5p",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y5p"
+  },
+  "68": {
+    "code": "68",
+    "model": "Huawei Y6 (2019)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y6-2019"
+  },
+  "69": {
+    "code": "69",
+    "model": "Huawei Y6p",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y6p"
+  },
+  "6a": {
+    "code": "6a",
+    "model": "Huawei Y6s",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y6s"
+  },
+  "6b": {
+    "code": "6b",
+    "model": "Huawei Y7 (2019)",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y7-2019"
+  },
+  "6c": {
+    "code": "6c",
+    "model": "Huawei Y8p",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y8p"
+  },
+  "6d": {
+    "code": "6d",
+    "model": "Huawei Y9S",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-y9s"
+  },
+  "6e": {
+    "code": "6e",
+    "model": "Huawei Mate X3",
+    "device": "android",
+    "other_kind": "",
+    "modelKey": "huawei-mate-x3"
+  },
+  "6f": {
+    "code": "6f",
+    "model": "iPhone 16e",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-16e"
+  },
+  "6g": {
+    "code": "6g",
+    "model": "iPhone 16 Plus",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-16-plus"
+  },
+  "6h": {
+    "code": "6h",
+    "model": "iPhone 16 Pro",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-16-pro"
+  },
+  "6i": {
+    "code": "6i",
+    "model": "iPhone 16 Pro Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-16-pro-max"
+  },
+  "6j": {
+    "code": "6j",
+    "model": "iPhone 15 Pro",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-15-pro"
+  },
+  "6k": {
+    "code": "6k",
+    "model": "iPhone 15 Pro Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-15-pro-max"
+  },
+  "6l": {
+    "code": "6l",
+    "model": "iPhone 15 Plus",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-15-plus"
+  },
+  "6m": {
+    "code": "6m",
+    "model": "iPhone 15",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-15"
+  },
+  "6n": {
+    "code": "6n",
+    "model": "iPhone 14 Pro Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-14-pro-max"
+  },
+  "6o": {
+    "code": "6o",
+    "model": "iPhone 14 Pro",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-14-pro"
+  },
+  "6p": {
+    "code": "6p",
+    "model": "iPhone 14 Plus",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-14-plus"
+  },
+  "6q": {
+    "code": "6q",
+    "model": "iPhone 14",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-14"
+  },
+  "6r": {
+    "code": "6r",
+    "model": "iPhone 13 Pro",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-13-pro"
+  },
+  "6s": {
+    "code": "6s",
+    "model": "iPhone 13 Pro Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-13-pro-max"
+  },
+  "6t": {
+    "code": "6t",
+    "model": "iPhone 13 mini",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-13-mini"
+  },
+  "6u": {
+    "code": "6u",
+    "model": "iPhone 13",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-13"
+  },
+  "6v": {
+    "code": "6v",
+    "model": "iPhone 12 Pro Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-12-pro-max"
+  },
+  "6w": {
+    "code": "6w",
+    "model": "iPhone 12 Pro",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-12-pro"
+  },
+  "6x": {
+    "code": "6x",
+    "model": "iPhone 12 mini",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-12-mini"
+  },
+  "6y": {
+    "code": "6y",
+    "model": "iPhone 12",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-12"
+  },
+  "6z": {
+    "code": "6z",
+    "model": "iPhone 11 Pro Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-11-pro-max"
+  },
+  "70": {
+    "code": "70",
+    "model": "iPhone 11 Pro",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-11-pro"
+  },
+  "71": {
+    "code": "71",
+    "model": "iPhone 11",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-11"
+  },
+  "72": {
+    "code": "72",
+    "model": "iPhone XS Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-xs-max"
+  },
+  "73": {
+    "code": "73",
+    "model": "iPhone XS",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-xs"
+  },
+  "74": {
+    "code": "74",
+    "model": "iPhone X",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-x"
+  },
+  "75": {
+    "code": "75",
+    "model": "iPhone XR",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-xr"
+  },
+  "76": {
+    "code": "76",
+    "model": "iPhone SE 2",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-se-2"
+  },
+  "77": {
+    "code": "77",
+    "model": "iPhone SE",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-se"
+  },
+  "78": {
+    "code": "78",
+    "model": "iPhone 8 Plus",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-8-plus"
+  },
+  "79": {
+    "code": "79",
+    "model": "iPhone 8",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-8"
+  },
+  "7a": {
+    "code": "7a",
+    "model": "iPhone 7",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-7"
+  },
+  "7b": {
+    "code": "7b",
+    "model": "iPhone 7 Plus",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-7-plus"
+  },
+  "7c": {
+    "code": "7c",
+    "model": "iPhone 6s Plus",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-6s-plus"
+  },
+  "7d": {
+    "code": "7d",
+    "model": "iPhone 6s",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-6s"
+  },
+  "7e": {
+    "code": "7e",
+    "model": "iPhone 17",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-17"
+  },
+  "7f": {
+    "code": "7f",
+    "model": "iPhone 17 Pro",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-17-pro"
+  },
+  "7g": {
+    "code": "7g",
+    "model": "iPhone 17 Pro Max",
+    "device": "iphone",
+    "other_kind": "",
+    "modelKey": "iphone-iphone-17-pro-max"
+  },
+  "7h": {
+    "code": "7h",
+    "model": "Игровой ноутбук",
+    "device": "other",
+    "other_kind": "laptop",
+    "modelKey": "igrovyh-noutbukov"
+  },
+  "7i": {
+    "code": "7i",
+    "model": "Офисный ноутбук",
+    "device": "other",
+    "other_kind": "laptop",
+    "modelKey": "ofisnyh-noutbukov"
+  },
+  "7j": {
+    "code": "7j",
+    "model": "Ультрабуки",
+    "device": "other",
+    "other_kind": "laptop",
+    "modelKey": "ultrabukov"
+  },
+  "7k": {
+    "code": "7k",
+    "model": "iPad 10",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-10"
+  },
+  "7l": {
+    "code": "7l",
+    "model": "iPad 4",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-4"
+  },
+  "7m": {
+    "code": "7m",
+    "model": "iPad 5",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-5"
+  },
+  "7n": {
+    "code": "7n",
+    "model": "iPad 6",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-6"
+  },
+  "7o": {
+    "code": "7o",
+    "model": "iPad 7",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-7"
+  },
+  "7p": {
+    "code": "7p",
+    "model": "iPad 8",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-8"
+  },
+  "7q": {
+    "code": "7q",
+    "model": "iPad 9",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-9"
+  },
+  "7r": {
+    "code": "7r",
+    "model": "iPad Air",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-air"
+  },
+  "7s": {
+    "code": "7s",
+    "model": "iPad Air 2",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-air-2"
+  },
+  "7t": {
+    "code": "7t",
+    "model": "iPad Air 3",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-air-3"
+  },
+  "7u": {
+    "code": "7u",
+    "model": "iPad Air 4",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-air-4"
+  },
+  "7v": {
+    "code": "7v",
+    "model": "iPad Air 5",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-air-5"
+  },
+  "7w": {
+    "code": "7w",
+    "model": "iPad mini",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-mini"
+  },
+  "7x": {
+    "code": "7x",
+    "model": "iPad mini 2",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-mini-2"
+  },
+  "7y": {
+    "code": "7y",
+    "model": "iPad mini 3",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-mini-3"
+  },
+  "7z": {
+    "code": "7z",
+    "model": "iPad mini 4",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-mini-4"
+  },
+  "80": {
+    "code": "80",
+    "model": "iPad mini 5",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-mini-5"
+  },
+  "81": {
+    "code": "81",
+    "model": "iPad mini 6",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-mini-6"
+  },
+  "82": {
+    "code": "82",
+    "model": "iPad Pro 10.5",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-10-5"
+  },
+  "83": {
+    "code": "83",
+    "model": "iPad Pro 11 (2018)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-11-2018"
+  },
+  "84": {
+    "code": "84",
+    "model": "iPad Pro 11 (2020)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-11-2020"
+  },
+  "85": {
+    "code": "85",
+    "model": "iPad Pro 11 (2021)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-11-2021"
+  },
+  "86": {
+    "code": "86",
+    "model": "iPad Pro 11 (2022)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-11-2022"
+  },
+  "87": {
+    "code": "87",
+    "model": "iPad Pro 12.9 (2017)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-12-9-2017"
+  },
+  "88": {
+    "code": "88",
+    "model": "iPad Pro 12.9 (2018)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-12-9-2018"
+  },
+  "89": {
+    "code": "89",
+    "model": "iPad Pro 12.9 (2020)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-12-9-2020"
+  },
+  "8a": {
+    "code": "8a",
+    "model": "iPad Pro 12.9 (2021)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-12-9-2021"
+  },
+  "8b": {
+    "code": "8b",
+    "model": "iPad Pro 12.9 (2022)",
+    "device": "other",
+    "other_kind": "tablet",
+    "modelKey": "ipad-ipad-pro-12-9-2022"
+  }
+}

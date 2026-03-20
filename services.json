@@ -1,0 +1,72 @@
+[
+  {
+    "code": "diag",
+    "title": "Диагностика",
+    "desc": "Проверка и точная причина неисправности",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "screen",
+    "title": "Замена дисплея",
+    "desc": "Цена из Excel по модели и качеству",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "battery",
+    "title": "Замена аккумулятора",
+    "desc": "Цена из Excel по модели и качеству",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "rear_glass",
+    "title": "Корпус / заднее стекло",
+    "desc": "Цена из Excel по модели и позиции",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "flex_charge",
+    "title": "Шлейфы / зарядка",
+    "desc": "Цена из Excel по модели и позиции",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "flash_mic",
+    "title": "Шлейф вспышки / микрофона",
+    "desc": "Цена из Excel по модели и позиции",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "speaker",
+    "title": "Динамики",
+    "desc": "Цена из Excel по модели и позиции",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "camera",
+    "title": "Камеры",
+    "desc": "Цена из Excel по модели и позиции",
+    "base_from": 0,
+    "base_to": 0
+  },
+  {
+    "code": "water",
+    "title": "После воды",
+    "desc": "Чистка и восстановление платы",
+    "base_from": 2990,
+    "base_to": 19990
+  },
+  {
+    "code": "software",
+    "title": "Прошивка / ПО",
+    "desc": "Сбои, зависания, восстановление",
+    "base_from": 1490,
+    "base_to": 4990
+  }
+]
