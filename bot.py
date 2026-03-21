@@ -238,7 +238,7 @@ def site_model_info(code: str) -> Dict[str, Any]:
 
 
 def site_prefill_intro_html(context: ContextTypes.DEFAULT_TYPE) -> str:
-    lines = ["✅ <b>Данные с сайта получил</b>", ""]
+    lines: List[str] = []
     flow = str(context.user_data.get("flow") or "")
     device = str(context.user_data.get("device") or "").strip()
 
@@ -254,10 +254,10 @@ def site_prefill_intro_html(context: ContextTypes.DEFAULT_TYPE) -> str:
         lines.append("📦 <b>Тип устройства:</b> Ноутбук")
 
     lines.append(f"📱 <b>Ваше устройство:</b> {esc(context.user_data.get('model', '—'))}")
-    if str(context.user_data.get("service") or ""):
-        lines.append(f"🔧 <b>Услуга:</b> {esc(request_title(context))}")
     if context.user_data.get("site_problem_label"):
-        lines.append(f"📝 <b>Проблема:</b> {esc(context.user_data['site_problem_label'])}")
+        lines.append(f"🔧 <b>Проблема:</b> {esc(context.user_data['site_problem_label'])}")
+    elif str(context.user_data.get("service") or ""):
+        lines.append(f"🔧 <b>Услуга:</b> {esc(request_title(context))}")
     if context.user_data.get("phone"):
         lines.append(f"📞 <b>Телефон:</b> {esc(context.user_data['phone'])}")
     if context.user_data.get("site_tg"):
@@ -971,7 +971,7 @@ async def prompt_for_contact_after_selection(message_target, context: ContextTyp
     if has_prefilled_phone(context):
         context.user_data["date"] = ""
         await message_target.reply_text(
-            "✅ Номер с сайта уже получил.\n⏰ Теперь выберите удобное время, когда мастер сможет с вами связаться:",
+            "⏰ Выберите удобное время, когда мастер сможет с вами связаться:",
             reply_markup=time_keyboard(),
         )
         return S_TIME
