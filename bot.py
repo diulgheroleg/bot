@@ -407,17 +407,27 @@ def model_matches_item(model: str, item: Dict[str, Any]) -> bool:
     if not selected:
         return False
 
-    aliases = item.get("aliases") or [item.get("model", "")]
-    normalized_aliases = [normalize_text(x) for x in aliases if x]
+    aliases = [str(x or "").strip() for x in (item.get("aliases") or [item.get("model", "")]) if str(x or "").strip()]
+    normalized_aliases = [normalize_text(x) for x in aliases]
     if selected in normalized_aliases:
         return True
 
     selected_tokens = set(model_tokens(model))
     selected_core = set(model_core_tokens(model))
     selected_brand = detect_brand(model)
-    selected_words = selected.split()
+    selected_words = set(selected.split())
 
     qualifier_words = {"pro", "plus", "max", "mini", "ultra", "fe", "lite", "5g", "4g", "2024", "2025", "2023", "e"}
+    selected_qualifiers = selected_words & qualifier_words
+
+    def alias_qualifiers(alias_norm: str) -> set[str]:
+        return set(alias_norm.split()) & qualifier_words
+
+    def qualifiers_compatible(alias_norm: str) -> bool:
+        a_q = alias_qualifiers(alias_norm)
+        if selected_qualifiers:
+            return a_q == selected_qualifiers
+        return not a_q
 
     def prefix_match_ok(alias_norm: str) -> bool:
         if not alias_norm.startswith(selected):
@@ -431,12 +441,15 @@ def model_matches_item(model: str, item: Dict[str, Any]) -> bool:
         tail_word = tail_word.split()[0] if tail_word else ""
         if tail_word in qualifier_words and tail_word not in selected_words:
             return False
-        return True
+        return qualifiers_compatible(alias_norm)
 
     for raw_alias, alias in zip(aliases, normalized_aliases):
         alias_brand = detect_brand(raw_alias) or detect_brand(alias) or detect_brand(item.get("model", "")) or detect_brand(item.get("raw_name", ""))
 
         if selected_brand and alias_brand and alias_brand != selected_brand:
+            continue
+
+        if not qualifiers_compatible(alias):
             continue
 
         if prefix_match_ok(alias):
@@ -445,17 +458,27 @@ def model_matches_item(model: str, item: Dict[str, Any]) -> bool:
         alias_tokens = set(model_tokens(raw_alias))
         alias_core = set(model_core_tokens(raw_alias))
 
-        if selected_tokens and len(selected_tokens) >= 2 and selected_tokens.issubset(alias_tokens):
+        if selected_tokens and selected_tokens == alias_tokens:
             return True
 
-        if selected_core:
-            if len(selected_core) >= 2 and selected_core.issubset(alias_core):
+        if selected_tokens and len(selected_tokens) >= 2 and selected_tokens.issubset(alias_tokens):
+            extras = alias_tokens - selected_tokens
+            if not (extras & qualifier_words):
                 return True
+
+        if selected_core:
+            if len(selected_core) >= 2 and selected_core == alias_core:
+                return True
+
+            if len(selected_core) >= 2 and selected_core.issubset(alias_core):
+                extras = alias_tokens - selected_tokens
+                if not (extras & qualifier_words):
+                    return True
 
             if len(selected_core) == 1:
                 token = next(iter(selected_core))
                 has_letters = bool(re.search(r"[a-zа-я]", token))
-                if has_letters and token in alias_core:
+                if has_letters and token in alias_core and selected_tokens == alias_tokens:
                     return True
 
     return False
@@ -714,6 +737,22 @@ def compact_detail_text(label: str) -> str:
     text = str(label or "").strip()
     if not text:
         return "Вариант"
+
+    pure_quality_map = {
+        "оригинал": "Оригинал",
+        "сервисный оригинал": "Сервисный оригинал",
+        "снятый оригинал": "Снятый оригинал",
+        "копия": "Копия",
+        "lcd": "LCD",
+        "oled": "OLED",
+        "amoled": "AMOLED",
+        "premium": "Premium",
+        "повышенная емкость": "Повышенная емкость",
+        "восстановленный оригинал": "Восстановленный оригинал",
+    }
+    pure_norm = normalize_text(text)
+    if pure_norm in pure_quality_map:
+        return pure_quality_map[pure_norm]
 
     # Берём только осмысленный цвет/оттенок, а не любое первое значение в скобках.
     paren_values = [x.strip() for x in re.findall(r"\(([^()]*)\)", text)]
