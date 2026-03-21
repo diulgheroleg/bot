@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import pickle
 import re
 from datetime import datetime, timedelta, date
 from html import escape as html_escape
@@ -38,6 +39,26 @@ BACK_TEXT = "⬅️ Назад"
 CONTACT_TEXT = "📞 Отправить номер телефона"
 HOME_TEXT = "🏠 В начало"
 STATE_FILE = BASE_DIR / "bot_state.pkl"
+
+
+def ensure_valid_state_file() -> None:
+    if not STATE_FILE.exists():
+        return
+    try:
+        with open(STATE_FILE, "rb") as f:
+            pickle.load(f)
+    except Exception:
+        broken_name = STATE_FILE.with_suffix(f".broken-{datetime.now().strftime('%Y%m%d-%H%M%S')}.pkl")
+        try:
+            STATE_FILE.rename(broken_name)
+            logger.warning("Broken bot_state.pkl moved to %s", broken_name.name)
+        except Exception:
+            try:
+                STATE_FILE.unlink(missing_ok=True)
+                logger.warning("Broken bot_state.pkl removed")
+            except Exception:
+                logger.exception("Failed to cleanup broken bot_state.pkl")
+
 
 # Conversation states
 (
@@ -901,6 +922,24 @@ def request_device_label(context: ContextTypes.DEFAULT_TYPE) -> str:
     return str(context.user_data.get("model") or "—")
 
 
+def has_prefilled_phone(context: ContextTypes.DEFAULT_TYPE) -> bool:
+    phone = normalize_phone(str(context.user_data.get("phone") or ""))
+    return bool(re.match(r"^\+7\d{10}$", phone))
+
+
+async def prompt_for_contact_after_selection(message_target, context: ContextTypes.DEFAULT_TYPE, prompt_text: str) -> int:
+    if has_prefilled_phone(context):
+        context.user_data["date"] = ""
+        await message_target.reply_text(
+            "✅ Номер с сайта уже получил.\n⏰ Теперь выберите удобное время, когда мастер сможет с вами связаться:",
+            reply_markup=time_keyboard(),
+        )
+        return S_TIME
+
+    await message_target.reply_text(prompt_text, reply_markup=phone_keyboard())
+    return S_PHONE
+
+
 def should_skip_date_step(context: ContextTypes.DEFAULT_TYPE) -> bool:
     return str(context.user_data.get("flow") or "") == "other" or bool(context.user_data.get("site_prefilled"))
 
@@ -1149,6 +1188,15 @@ def save_lead(record: Dict[str, Any]) -> str:
 
     leads.append(record)
     LEADS_FILE.write_text(json.dumps(leads, ensure_ascii=False, indent=2), encoding="utf-8")
+    logger.info(
+        "LEAD_SAVED id=%s source=%s model=%s service=%s part=%s phone=%s",
+        record.get("lead_id", ""),
+        "website" if record.get("site_tg") or "Заявка с сайта" in str(record.get("comment") or "") else "telegram",
+        record.get("model", ""),
+        record.get("service_code", ""),
+        record.get("part_label", ""),
+        record.get("phone", ""),
+    )
     return str(record["lead_id"])
 
 
@@ -1475,11 +1523,11 @@ async def proceed_after_service_from_message(update: Update, context: ContextTyp
         + f"\n💰 <b>Стоимость:</b> {esc(price_html_for_current_selection(context))}",
         parse_mode=ParseMode.HTML,
     )
-    await update.effective_chat.send_message(
+    return await prompt_for_contact_after_selection(
+        update.effective_chat,
+        context,
         "📞 Оставьте номер телефона, чтобы мастер мог связаться с вами:",
-        reply_markup=phone_keyboard(),
     )
-    return S_PHONE
 
 
 async def proceed_after_service_from_callback(q, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -1494,11 +1542,11 @@ async def proceed_after_service_from_callback(q, context: ContextTypes.DEFAULT_T
         + f"\n💰 <b>Стоимость:</b> {esc(price_html_for_current_selection(context))}",
         parse_mode=ParseMode.HTML,
     )
-    await q.message.reply_text(
+    return await prompt_for_contact_after_selection(
+        q.message,
+        context,
         "📞 Оставьте номер телефона, чтобы мастер мог связаться с вами:",
-        reply_markup=phone_keyboard(),
     )
-    return S_PHONE
 
 
 # --- Handlers
@@ -1545,21 +1593,37 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
             context.user_data["problem"] = f"Заявка с сайта. Проблема: {context.user_data['site_problem_label']}"
             if context.user_data.get("site_tg"):
                 context.user_data["problem"] += f". Telegram: {context.user_data['site_tg']}"
+
+            logger.info(
+                "WEB_ORDER_OPENED model=%s problem=%s phone=%s tg=%s",
+                context.user_data.get("model", ""),
+                context.user_data.get("site_problem_label", ""),
+                context.user_data.get("phone", ""),
+                context.user_data.get("site_tg", ""),
+            )
+
             if device == "other" or other_kind:
                 context.user_data["flow"] = "other"
                 context.user_data["device"] = "other"
                 context.user_data["other_kind"] = other_kind or "tablet"
                 context.user_data["service"] = ""
-            else:
-                context.user_data["flow"] = "repair"
-                context.user_data["device"] = normalize_device(device)
-                context.user_data["service"] = site_problem_to_service(data.get("problem", ""))
+                await update.effective_chat.send_message(
+                    site_prefill_intro_html(context) + "\n\n⏰ Выберите удобное время, когда мастер сможет с вами связаться:",
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=time_keyboard(),
+                )
+                return S_TIME
+
+            context.user_data["flow"] = "repair"
+            context.user_data["device"] = normalize_device(device)
+            context.user_data["service"] = site_problem_to_service(data.get("problem", ""))
+
             await update.effective_chat.send_message(
-                site_prefill_intro_html(context) + "\n\n⏰ Выберите удобное время, когда мастер сможет с вами связаться:",
+                site_prefill_intro_html(context)
+                + "\n\n🧩 Теперь выберите, какую деталь будем ставить:",
                 parse_mode=ParseMode.HTML,
-                reply_markup=time_keyboard(),
             )
-            return S_TIME
+            return await proceed_after_service_from_message(update, context)
 
     if data.get("mode") == "consult":
         context.user_data["flow"] = "consult"
@@ -1858,11 +1922,11 @@ async def on_part_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
                 + f"\n💰 <b>Стоимость:</b> {esc(format_rub(int(chosen['price'])))}",
                 parse_mode=ParseMode.HTML,
             )
-            await q.message.reply_text(
+            return await prompt_for_contact_after_selection(
+                q.message,
+                context,
                 "📞 Оставьте номер телефона, чтобы подтвердить запись:",
-                reply_markup=phone_keyboard(),
             )
-            return S_PHONE
 
         context.user_data["part_bucket_selected"] = bucket
         context.user_data["part_has_bucket_menu"] = True
@@ -2211,6 +2275,7 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 def build_app() -> Application:
     cfg = load_config()
 
+    ensure_valid_state_file()
     persistence = PicklePersistence(filepath=str(STATE_FILE))
     app = (
         Application.builder()
