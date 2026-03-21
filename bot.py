@@ -122,6 +122,8 @@ def parse_start_payload(payload: str) -> Dict[str, str]:
         return {"mode": "consult"}
     if payload.startswith("b_") and "_" in payload:
         parts = payload.split("_")
+        if len(parts) == 3:
+            return {"mode": "book", "site_code": parts[1], "service_short": parts[2]}
         if len(parts) >= 4:
             device = parts[1]
             model = parts[2].replace("-", " ")
@@ -129,6 +131,8 @@ def parse_start_payload(payload: str) -> Dict[str, str]:
             return {"mode": "book", "device": device, "model": model, "service": service}
     if payload.startswith("b|"):
         p = payload.split("|")
+        if len(p) == 3:
+            return {"mode": "book", "site_code": p[1], "service_short": p[2]}
         if len(p) >= 4:
             return {"mode": "book", "device": p[1], "model": p[2], "service": p[3]}
     if payload.startswith("o|"):
@@ -156,6 +160,22 @@ def site_problem_label(problem_code: str) -> str:
         "k": "Проблемы со звуком",
         "o": "Другая проблема",
     }.get((problem_code or "").strip().lower(), "Другая проблема")
+
+
+def site_service_short_to_key(service_code: str) -> str:
+    return {
+        "s": "screen",
+        "b": "battery",
+        "r": "rear_glass",
+        "c": "flex_charge",
+        "f": "flash_mic",
+        "m": "camera",
+        "k": "speaker",
+        "w": "water",
+        "p": "software",
+        "d": "diag",
+        "o": "diag",
+    }.get((service_code or "").strip().lower(), "diag")
 
 
 def normalize_tg_handle(raw: str) -> str:
@@ -1488,10 +1508,24 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     context.user_data.clear()
 
     if data.get("mode") == "book":
+        info = site_model_info(data.get("site_code", "")) if data.get("site_code") else {}
         context.user_data["flow"] = "repair"
-        context.user_data["device"] = normalize_device(data.get("device", ""))
-        context.user_data["model"] = data.get("model", "").strip()
-        context.user_data["service"] = data.get("service", "").strip()
+        context.user_data["device"] = normalize_device(str(info.get("device") or data.get("device", "")))
+        context.user_data["model"] = str(info.get("model") or data.get("model", "")).strip()
+        context.user_data["service"] = str(data.get("service") or site_service_short_to_key(data.get("service_short", ""))).strip()
+        if not context.user_data.get("model"):
+            await update.effective_chat.send_message(
+                "Не удалось определить модель с сайта. Выберите устройство заново:",
+                reply_markup=device_keyboard(),
+            )
+            return S_DEVICE
+        if not context.user_data.get("service"):
+            await update.effective_chat.send_message(
+                site_prefill_intro_html(context) + "\n\nВыберите нужную услугу:",
+                parse_mode=ParseMode.HTML,
+                reply_markup=services_keyboard(),
+            )
+            return S_SERVICE
         await update.effective_chat.send_message(
             site_prefill_intro_html(context),
             parse_mode=ParseMode.HTML,
