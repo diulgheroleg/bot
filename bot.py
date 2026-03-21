@@ -139,8 +139,14 @@ def parse_start_payload(payload: str) -> Dict[str, str]:
     payload = (payload or "").strip()
     if not payload:
         return {}
+
+    def clean_site_value(value: str) -> str:
+        value = (value or "").strip()
+        return "" if value.lower() in {"", "na", "none", "null"} else value
+
     if payload == "consult":
         return {"mode": "consult"}
+
     if payload.startswith("b_") and "_" in payload:
         parts = payload.split("_")
         if len(parts) == 3:
@@ -150,16 +156,36 @@ def parse_start_payload(payload: str) -> Dict[str, str]:
             model = parts[2].replace("-", " ")
             service = parts[3]
             return {"mode": "book", "device": device, "model": model, "service": service}
+
     if payload.startswith("b|"):
         p = payload.split("|")
         if len(p) == 3:
             return {"mode": "book", "site_code": p[1], "service_short": p[2]}
         if len(p) >= 4:
             return {"mode": "book", "device": p[1], "model": p[2], "service": p[3]}
+
+    if payload.startswith("o_"):
+        p = payload.split("_", 4)
+        if len(p) >= 5:
+            return {
+                "mode": "site_order",
+                "code": clean_site_value(p[1]),
+                "problem": clean_site_value(p[2]),
+                "phone": clean_site_value(p[3]),
+                "tg": clean_site_value(p[4]),
+            }
+
     if payload.startswith("o|"):
         p = payload.split("|")
         if len(p) >= 5:
-            return {"mode": "site_order", "code": p[1], "problem": p[2], "phone": p[3], "tg": p[4]}
+            return {
+                "mode": "site_order",
+                "code": clean_site_value(p[1]),
+                "problem": clean_site_value(p[2]),
+                "phone": clean_site_value(p[3]),
+                "tg": clean_site_value(p[4]),
+            }
+
     return {}
 
 
@@ -201,7 +227,7 @@ def site_service_short_to_key(service_code: str) -> str:
 
 def normalize_tg_handle(raw: str) -> str:
     value = (raw or "").strip().replace(" ", "")
-    if not value:
+    if not value or value.lower() in {"na", "none", "null"}:
         return ""
     value = value.lstrip("@")
     return f"@{value}" if value else ""
@@ -214,8 +240,19 @@ def site_model_info(code: str) -> Dict[str, Any]:
 def site_prefill_intro_html(context: ContextTypes.DEFAULT_TYPE) -> str:
     lines = ["✅ <b>Данные с сайта получил</b>", ""]
     flow = str(context.user_data.get("flow") or "")
+    device = str(context.user_data.get("device") or "").strip()
+
     if flow == "other":
         lines.append(f"📦 <b>Тип устройства:</b> {esc(other_kind_label(str(context.user_data.get('other_kind') or '')))}")
+    elif device == "iphone":
+        lines.append("📦 <b>Тип устройства:</b> iPhone")
+    elif device == "android":
+        lines.append("📦 <b>Тип устройства:</b> Android смартфон")
+    elif device == "tablet":
+        lines.append("📦 <b>Тип устройства:</b> Планшет")
+    elif device == "laptop":
+        lines.append("📦 <b>Тип устройства:</b> Ноутбук")
+
     lines.append(f"📱 <b>Ваше устройство:</b> {esc(context.user_data.get('model', '—'))}")
     if str(context.user_data.get("service") or ""):
         lines.append(f"🔧 <b>Услуга:</b> {esc(request_title(context))}")
@@ -238,14 +275,17 @@ def normalize_device(d: str) -> str:
 
 
 def normalize_phone(raw: str) -> str:
-    digits = re.sub(r"\D+", "", raw or "")
+    raw_value = (raw or "").strip()
+    if not raw_value or raw_value.lower() in {"na", "none", "null"}:
+        return ""
+    digits = re.sub(r"\D+", "", raw_value)
     if digits.startswith("8") and len(digits) == 11:
         digits = "7" + digits[1:]
     if digits.startswith("7") and len(digits) == 11:
         return "+" + digits
     if len(digits) == 10:
         return "+7" + digits
-    return (raw or "").strip()
+    return raw_value
 
 
 def normalize_text(value: str) -> str:
@@ -1553,6 +1593,7 @@ async def proceed_after_service_from_callback(q, context: ContextTypes.DEFAULT_T
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     payload = " ".join(context.args) if context.args else ""
     data = parse_start_payload(payload)
+    logger.info("START payload=%s parsed=%s", payload, data)
     context.user_data.clear()
 
     if data.get("mode") == "book":
