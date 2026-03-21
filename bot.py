@@ -114,7 +114,7 @@ def get_cfg(context: ContextTypes.DEFAULT_TYPE):
     context.bot_data["cfg"] = cfg
     return cfg
 
-# --- Helpers
+
 # --- Helpers
 
 def esc(value: Any) -> str:
@@ -460,7 +460,8 @@ def resolve_model_name(device: str, query: str) -> Tuple[Optional[str], List[str
     return None, candidates
 
 
-# --- Support relay mapping (admin reply -> user)
+# --- Support relay mapping
+
 def remember_forward(context: ContextTypes.DEFAULT_TYPE, forwarded_message_id: int, user_id: int):
     context.bot_data.setdefault("fw_map", {})[forwarded_message_id] = user_id
 
@@ -505,10 +506,9 @@ def model_matches_item(model: str, item: Dict[str, Any]) -> bool:
         return set(alias_norm.split()) & qualifier_words
 
     def qualifiers_compatible(alias_norm: str) -> bool:
-        a_q = alias_qualifiers(alias_norm)
         if selected_qualifiers:
-            return a_q == selected_qualifiers
-        return not a_q
+            return alias_qualifiers(alias_norm) == selected_qualifiers
+        return not alias_qualifiers(alias_norm)
 
     def prefix_match_ok(alias_norm: str) -> bool:
         if not alias_norm.startswith(selected):
@@ -563,6 +563,7 @@ def model_matches_item(model: str, item: Dict[str, Any]) -> bool:
                     return True
 
     return False
+
 
 def format_item_name(item: Dict[str, Any]) -> str:
     detail = str(item.get("detail", "") or "").strip()
@@ -642,6 +643,7 @@ def get_service_options_for_model(model: str, service_code: str) -> List[Dict[st
     exact.sort(key=lambda x: (int(x.get("price", 0)), x.get("label", ""), x.get("quality", "")))
     return exact
 
+
 def part_bucket_key(service_code: str, quality: str, label: str = "") -> str:
     if service_code == "battery":
         return battery_quality_key({"quality": quality, "label": label, "raw_name": label})
@@ -653,6 +655,7 @@ def part_bucket_key(service_code: str, quality: str, label: str = "") -> str:
     if any(x in text for x in ["оригинал", "сервисный", "снятый"]):
         return "original"
     return "replica"
+
 
 def bucket_label(bucket: str, service_code: str = "") -> str:
     if service_code == "battery":
@@ -667,6 +670,7 @@ def bucket_label(bucket: str, service_code: str = "") -> str:
         return mapping.get(bucket, bucket)
 
     return "Оригинал" if bucket == "original" else "Реплика"
+
 
 def get_part_buckets(model: str, service_code: str) -> Dict[str, List[Dict[str, Any]]]:
     options = get_service_options_for_model(model, service_code)
@@ -691,6 +695,7 @@ def get_part_buckets(model: str, service_code: str) -> Dict[str, List[Dict[str, 
     for opt in options:
         buckets[part_bucket_key(service_code, str(opt.get("quality", "")), str(opt.get("label", "")))].append(opt)
     return {k: v for k, v in buckets.items() if v}
+
 
 def bucket_price_label(options: List[Dict[str, Any]]) -> str:
     prices = [int(x["price"]) for x in options if x.get("price") is not None]
@@ -723,6 +728,7 @@ def estimate_price(
         return None, None, "Уточним стоимость"
     return int(service.get("base_from", 0)), int(service.get("base_to", 0)), "Ориентировочно"
 
+
 def battery_quality_key(item: Dict[str, Any]) -> str:
     quality = normalize_text(item.get("quality", ""))
     raw = normalize_text(item.get("raw_name", ""))
@@ -753,7 +759,7 @@ def battery_quality_label(item: Dict[str, Any]) -> str:
     }
     return mapping.get(key, str(item.get("quality") or "").strip() or "Оригинал")
 
-# --- UI builders
+
 # --- UI builders
 
 def kb_inline(rows: List[List[Tuple[str, str]]]) -> InlineKeyboardMarkup:
@@ -779,7 +785,6 @@ def phone_keyboard() -> ReplyKeyboardMarkup:
         resize_keyboard=True,
         one_time_keyboard=False,
     )
-
 
 
 def service_button_title(service_code: str) -> str:
@@ -835,7 +840,6 @@ def compact_detail_text(label: str) -> str:
     if pure_norm in pure_quality_map:
         return pure_quality_map[pure_norm]
 
-    # Берём только осмысленный цвет/оттенок, а не любое первое значение в скобках.
     paren_values = [x.strip() for x in re.findall(r"\(([^()]*)\)", text)]
     color = ""
     color_tokens = [
@@ -942,6 +946,7 @@ def bucket_has_same_price(options: List[Dict[str, Any]]) -> bool:
     prices = {int(x.get("price", 0)) for x in options if x.get("price") is not None}
     return len(prices) == 1
 
+
 def request_title(context: ContextTypes.DEFAULT_TYPE) -> str:
     flow = str(context.user_data.get("flow") or "")
     if flow == "other":
@@ -967,25 +972,13 @@ def has_prefilled_phone(context: ContextTypes.DEFAULT_TYPE) -> bool:
     return bool(re.match(r"^\+7\d{10}$", phone))
 
 
-async def prompt_for_contact_after_selection(message_target, context: ContextTypes.DEFAULT_TYPE, prompt_text: str) -> int:
-    if has_prefilled_phone(context):
-        context.user_data["date"] = ""
-        await message_target.reply_text(
-            "⏰ Выберите удобное время, когда мастер сможет с вами связаться:",
-            reply_markup=time_keyboard(),
-        )
-        return S_TIME
-
-    await message_target.reply_text(prompt_text, reply_markup=phone_keyboard())
-    return S_PHONE
-
-
 def should_skip_date_step(context: ContextTypes.DEFAULT_TYPE) -> bool:
     return str(context.user_data.get("flow") or "") == "other" or bool(context.user_data.get("site_prefilled"))
 
 
 def go_home_requested(text: str) -> bool:
     return (text or "").strip().lower() in {HOME_TEXT.lower(), "/start", "в начало", "главное меню"}
+
 
 def support_keyboard(return_to: str) -> InlineKeyboardMarkup:
     if return_to == "confirm":
@@ -1073,7 +1066,6 @@ def part_type_keyboard(model: str, service_code: str) -> InlineKeyboardMarkup:
     return kb_inline(rows)
 
 
-
 def part_options_keyboard(model: str, service_code: str, bucket: str) -> InlineKeyboardMarkup:
     options = get_part_buckets(model, service_code).get(bucket, [])
     same_price = bucket_has_same_price(options)
@@ -1097,7 +1089,7 @@ def date_keyboard() -> InlineKeyboardMarkup:
     rows = []
     for i in range(0, 14, 2):
         row = []
-        for d in days[i : i + 2]:
+        for d in days[i: i + 2]:
             row.append((d.strftime("%d.%m"), f"date:{d.isoformat()}"))
         rows.append(row)
     rows.append([("⬅️ Назад", "back")])
@@ -1120,9 +1112,80 @@ def time_keyboard() -> InlineKeyboardMarkup:
     ]
     rows = []
     for i in range(0, len(times), 3):
-        rows.append([(t, f"time:{t}") for t in times[i : i + 3]])
+        rows.append([(t, f"time:{t}") for t in times[i: i + 3]])
     rows.append([("✍️ Другое время", "time:manual"), ("⬅️ Назад", "back")])
     return kb_inline(rows)
+
+
+# --- Unified selection cards
+
+def next_step_hint(step: str) -> str:
+    hints = {
+        "choose_part_type": "👇 Выберите категорию детали:",
+        "choose_part_option": "👇 Выберите точный вариант детали:",
+        "share_phone": "👇 Оставьте номер телефона для связи:",
+        "choose_time": "👇 Выберите удобное время:",
+        "choose_date": "👇 Выберите удобную дату:",
+    }
+    return hints.get(step, "")
+
+
+def price_html_for_current_selection(context: ContextTypes.DEFAULT_TYPE) -> str:
+    model = context.user_data.get("model", "")
+    service = context.user_data.get("service", "")
+    part = context.user_data.get("part")
+    mn, mx, _ = estimate_price(model, service, part)
+    return format_price_range(mn, mx)
+
+
+def current_selection_html(
+    context: ContextTypes.DEFAULT_TYPE,
+    *,
+    step: str,
+    show_price: bool = True,
+    show_part: bool = True,
+    extra_note: str = "",
+) -> str:
+    flow = str(context.user_data.get("flow") or "")
+    model = str(context.user_data.get("model") or "—")
+    service = str(context.user_data.get("service") or "")
+    part = context.user_data.get("part")
+
+    lines: List[str] = ["✨ <b>Проверьте выбор</b>", ""]
+
+    if flow == "other":
+        lines.append(f"📦 <b>Тип устройства:</b> {esc(other_kind_label(str(context.user_data.get('other_kind') or '')))}")
+        lines.append(f"📱 <b>Модель:</b> {esc(model)}")
+        problem = str(context.user_data.get("problem") or "").strip()
+        if problem:
+            lines.append(f"📝 <b>Проблема:</b> {esc(problem)}")
+    elif flow == "consult":
+        lines.append("💬 <b>Консультация</b>")
+        lines.append(f"📱 <b>Устройство / вопрос:</b> {esc(model)}")
+    else:
+        lines.append(f"📱 <b>Устройство:</b> {esc(model)}")
+        lines.append(f"🔧 <b>Услуга:</b> {esc(request_title(context))}")
+
+    if show_part and part:
+        part_name = part.get("label") if service == "battery" else compact_detail_text(part.get("label", ""))
+        lines.append(f"🧩 <b>Деталь:</b> {esc(part_name)}")
+
+    if show_price and flow not in {"other", "consult"}:
+        lines.append(f"💰 <b>Стоимость:</b> {esc(price_html_for_current_selection(context))}")
+
+    if context.user_data.get("phone") and step in {"choose_time", "choose_date"}:
+        lines.append(f"📞 <b>Телефон:</b> {esc(context.user_data.get('phone'))}")
+
+    if extra_note:
+        lines.append("")
+        lines.append(extra_note)
+
+    hint = next_step_hint(step)
+    if hint:
+        lines.append("")
+        lines.append(hint)
+
+    return "\n".join(lines)
 
 
 # --- Step helpers
@@ -1145,14 +1208,6 @@ def selected_service_html(context: ContextTypes.DEFAULT_TYPE) -> str:
     model = context.user_data.get("model", "—")
     sname = request_title(context)
     return f"🔧 <b>{esc(sname)}</b>\n📱 <b>Модель:</b> {esc(model)}"
-
-
-def price_html_for_current_selection(context: ContextTypes.DEFAULT_TYPE) -> str:
-    model = context.user_data.get("model", "")
-    service = context.user_data.get("service", "")
-    part = context.user_data.get("part")
-    mn, mx, _ = estimate_price(model, service, part)
-    return format_price_range(mn, mx)
 
 
 def clear_part_selection(context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -1265,6 +1320,9 @@ def booking_summary_html(context: ContextTypes.DEFAULT_TYPE) -> str:
             f"📱 <b>Модель:</b> {esc(model)}\n"
             "🔧 <b>Запрос:</b> Мастер свяжется и уточнит стоимость\n"
         )
+    elif flow == "consult":
+        txt += "💬 <b>Консультация</b>\n"
+        txt += f"📝 <b>Вопрос:</b> {esc(comment or model)}\n"
     else:
         txt += (
             f"📱 <b>Модель:</b> {esc(model)}\n"
@@ -1272,18 +1330,16 @@ def booking_summary_html(context: ContextTypes.DEFAULT_TYPE) -> str:
         )
     if part:
         txt += f"🧩 <b>Деталь:</b> {esc(compact_detail_text(part.get('label') or part.get('quality', '')))}\n"
-    if flow != "other":
+    if flow not in {"other", "consult"}:
         txt += f"💰 <b>Стоимость:</b> {esc(price_line)}\n"
     txt += f"📞 <b>Телефон:</b> {esc(phone)}\n"
-    if context.user_data.get("site_tg"):
-        txt += f"✈️ <b>Telegram:</b> {esc(context.user_data['site_tg'])}\n"
     if context.user_data.get("site_tg"):
         txt += f"✈️ <b>Telegram:</b> {esc(context.user_data['site_tg'])}\n"
     if should_skip_date_step(context):
         txt += f"⏰ <b>Когда удобно связаться:</b> {esc(booking_time)}\n"
     else:
         txt += f"🗓️ <b>Когда удобно:</b> {esc(date_str)} {esc(booking_time)}\n"
-    if comment:
+    if comment and flow != "consult":
         txt += f"📝 <b>Комментарий:</b> {esc(comment)}\n"
     txt += "\nЕсли всё верно, отправьте заявку мастеру."
     return txt
@@ -1320,6 +1376,9 @@ def build_admin_text(context: ContextTypes.DEFAULT_TYPE, user, lead_id: str) -> 
             f"📱 <b>Модель:</b> {esc(model)}\n"
             "🔧 <b>Запрос:</b> Другое устройство / мастер уточняет стоимость\n"
         )
+    elif flow == "consult":
+        txt += "💬 <b>Тип:</b> Консультация\n"
+        txt += f"📝 <b>Вопрос:</b> {esc(comment or model)}\n"
     else:
         txt += (
             f"📱 <b>Модель:</b> {esc(model)}\n"
@@ -1330,7 +1389,7 @@ def build_admin_text(context: ContextTypes.DEFAULT_TYPE, user, lead_id: str) -> 
             f"🧩 <b>Деталь:</b> {esc(compact_detail_text(part.get('label') or part.get('quality', '')))}"
             f" ({esc(format_rub(int(part.get('price', 0))))})\n"
         )
-    if flow != "other":
+    if flow not in {"other", "consult"}:
         txt += f"💰 <b>Стоимость:</b> {esc(price_line)}\n"
     txt += f"📞 <b>Телефон:</b> {esc(phone)}\n"
     if context.user_data.get("site_tg"):
@@ -1340,7 +1399,7 @@ def build_admin_text(context: ContextTypes.DEFAULT_TYPE, user, lead_id: str) -> 
     else:
         txt += f"🗓️ <b>Когда удобно:</b> {esc(date_str)} {esc(booking_time)}\n"
     txt += f"🆔 <b>UserID:</b> <code>{user.id}</code>"
-    if comment:
+    if comment and flow != "consult":
         txt += f"\n📝 <b>Комментарий:</b> {esc(comment)}"
     return txt
 
@@ -1391,7 +1450,7 @@ async def restore_phone_back_from_message(update: Update, context: ContextTypes.
         context.user_data["part_has_bucket_menu"] = True
         context.user_data.pop("part", None)
         await update.effective_chat.send_message(
-            selected_service_html(context) + "\n\nВыберите точный вариант детали:",
+            current_selection_html(context, step="choose_part_option", show_part=False),
             parse_mode=ParseMode.HTML,
             reply_markup=part_options_keyboard(
                 context.user_data.get("model", ""),
@@ -1419,7 +1478,7 @@ async def restore_phone_back_from_message(update: Update, context: ContextTypes.
     if target == "part_type":
         clear_part_selection(context)
         await update.effective_chat.send_message(
-            selected_service_html(context) + "\n\nВыберите, какую деталь поставить:",
+            current_selection_html(context, step="choose_part_type", show_part=False),
             parse_mode=ParseMode.HTML,
             reply_markup=part_type_keyboard(
                 context.user_data.get("model", ""),
@@ -1442,13 +1501,12 @@ async def ask_for_part_selection_from_message(update: Update, context: ContextTy
     if not options:
         set_phone_back_target(context, "service")
         await update.effective_chat.send_message(
-            selected_service_html(context)
-            + "\n💰 <b>Стоимость:</b> Уточним после осмотра\n\n"
-            + "По этой модели пока нет точной цены в прайсе. Мастер уточнит стоимость после проверки устройства.",
+            current_selection_html(
+                context,
+                step="share_phone",
+                extra_note="ℹ️ По этой модели точной цены пока нет. Мастер уточнит стоимость после проверки устройства.",
+            ),
             parse_mode=ParseMode.HTML,
-        )
-        await update.effective_chat.send_message(
-            "📞 Оставьте номер телефона, чтобы мастер связался с вами:",
             reply_markup=phone_keyboard(),
         )
         return S_PHONE
@@ -1459,14 +1517,10 @@ async def ask_for_part_selection_from_message(update: Update, context: ContextTy
         context.user_data.pop("part_bucket_selected", None)
         context.user_data.pop("part_has_bucket_menu", None)
         set_phone_back_target(context, "service")
+
         await update.effective_chat.send_message(
-            selected_service_html(context)
-            + f"\n🧩 <b>Деталь:</b> {esc(chosen['label'] if service == 'battery' else compact_detail_text(chosen['label']))}"
-            + f"\n💰 <b>Стоимость:</b> {esc(format_rub(int(chosen['price'])))}",
+            current_selection_html(context, step="share_phone"),
             parse_mode=ParseMode.HTML,
-        )
-        await update.effective_chat.send_message(
-            "📞 Оставьте номер телефона, чтобы подтвердить запись:",
             reply_markup=phone_keyboard(),
         )
         return S_PHONE
@@ -1475,7 +1529,7 @@ async def ask_for_part_selection_from_message(update: Update, context: ContextTy
         context.user_data.pop("part_bucket_selected", None)
         context.user_data.pop("part_has_bucket_menu", None)
         await update.effective_chat.send_message(
-            selected_service_html(context) + "\n\nВыберите, какую деталь поставить:",
+            current_selection_html(context, step="choose_part_type", show_part=False),
             parse_mode=ParseMode.HTML,
             reply_markup=part_type_keyboard(model, service),
         )
@@ -1484,8 +1538,19 @@ async def ask_for_part_selection_from_message(update: Update, context: ContextTy
     only_bucket = next(iter(buckets))
     context.user_data["part_bucket_selected"] = only_bucket
     context.user_data["part_has_bucket_menu"] = False
+
+    note = ""
+    bucket_options = get_part_buckets(model, service).get(only_bucket, [])
+    if bucket_has_same_price(bucket_options):
+        note = f"💡 Все варианты в этой категории стоят <b>{esc(bucket_price_label(bucket_options))}</b>."
+
     await update.effective_chat.send_message(
-        selected_service_html(context) + (f"\n\nВсе варианты в категории стоят <b>{esc(bucket_price_label(get_part_buckets(model, service).get(only_bucket, [])))}</b>.\nВыберите точный вариант детали:" if bucket_has_same_price(get_part_buckets(model, service).get(only_bucket, [])) else "\n\nВыберите точный вариант детали:"),
+        current_selection_html(
+            context,
+            step="choose_part_option",
+            show_part=False,
+            extra_note=note,
+        ),
         parse_mode=ParseMode.HTML,
         reply_markup=part_options_keyboard(model, service, only_bucket),
     )
@@ -1501,9 +1566,11 @@ async def ask_for_part_selection_from_callback(q, context: ContextTypes.DEFAULT_
     if not options:
         set_phone_back_target(context, "service")
         await q.edit_message_text(
-            selected_service_html(context)
-            + "\n💰 <b>Стоимость:</b> Уточним после осмотра\n\n"
-            + "По этой модели пока нет точной цены в прайсе. Мастер уточнит стоимость после проверки устройства.",
+            current_selection_html(
+                context,
+                step="share_phone",
+                extra_note="ℹ️ По этой модели точной цены пока нет. Мастер уточнит стоимость после проверки устройства.",
+            ),
             parse_mode=ParseMode.HTML,
         )
         await q.message.reply_text(
@@ -1518,10 +1585,9 @@ async def ask_for_part_selection_from_callback(q, context: ContextTypes.DEFAULT_
         context.user_data.pop("part_bucket_selected", None)
         context.user_data.pop("part_has_bucket_menu", None)
         set_phone_back_target(context, "service")
+
         await q.edit_message_text(
-            selected_service_html(context)
-            + f"\n🧩 <b>Деталь:</b> {esc(chosen['label'] if service == 'battery' else compact_detail_text(chosen['label']))}"
-            + f"\n💰 <b>Стоимость:</b> {esc(format_rub(int(chosen['price'])))}",
+            current_selection_html(context, step="share_phone"),
             parse_mode=ParseMode.HTML,
         )
         await q.message.reply_text(
@@ -1534,7 +1600,7 @@ async def ask_for_part_selection_from_callback(q, context: ContextTypes.DEFAULT_
         context.user_data.pop("part_bucket_selected", None)
         context.user_data.pop("part_has_bucket_menu", None)
         await q.edit_message_text(
-            selected_service_html(context) + "\n\nВыберите, какую деталь поставить:",
+            current_selection_html(context, step="choose_part_type", show_part=False),
             parse_mode=ParseMode.HTML,
             reply_markup=part_type_keyboard(model, service),
         )
@@ -1543,8 +1609,19 @@ async def ask_for_part_selection_from_callback(q, context: ContextTypes.DEFAULT_
     only_bucket = next(iter(buckets))
     context.user_data["part_bucket_selected"] = only_bucket
     context.user_data["part_has_bucket_menu"] = False
+
+    note = ""
+    bucket_options = get_part_buckets(model, service).get(only_bucket, [])
+    if bucket_has_same_price(bucket_options):
+        note = f"💡 Все варианты в этой категории стоят <b>{esc(bucket_price_label(bucket_options))}</b>."
+
     await q.edit_message_text(
-        selected_service_html(context) + (f"\n\nВсе варианты в категории стоят <b>{esc(bucket_price_label(get_part_buckets(model, service).get(only_bucket, [])))}</b>.\nВыберите точный вариант детали:" if bucket_has_same_price(get_part_buckets(model, service).get(only_bucket, [])) else "\n\nВыберите точный вариант детали:"),
+        current_selection_html(
+            context,
+            step="choose_part_option",
+            show_part=False,
+            extra_note=note,
+        ),
         parse_mode=ParseMode.HTML,
         reply_markup=part_options_keyboard(model, service, only_bucket),
     )
@@ -1559,15 +1636,11 @@ async def proceed_after_service_from_message(update: Update, context: ContextTyp
 
     set_phone_back_target(context, "service")
     await update.effective_chat.send_message(
-        selected_service_html(context)
-        + f"\n💰 <b>Стоимость:</b> {esc(price_html_for_current_selection(context))}",
+        current_selection_html(context, step="share_phone"),
         parse_mode=ParseMode.HTML,
+        reply_markup=phone_keyboard(),
     )
-    return await prompt_for_contact_after_selection(
-        update.effective_chat,
-        context,
-        "📞 Оставьте номер телефона, чтобы мастер мог связаться с вами:",
-    )
+    return S_PHONE
 
 
 async def proceed_after_service_from_callback(q, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -1578,18 +1651,18 @@ async def proceed_after_service_from_callback(q, context: ContextTypes.DEFAULT_T
 
     set_phone_back_target(context, "service")
     await q.edit_message_text(
-        selected_service_html(context)
-        + f"\n💰 <b>Стоимость:</b> {esc(price_html_for_current_selection(context))}",
+        current_selection_html(context, step="share_phone"),
         parse_mode=ParseMode.HTML,
     )
-    return await prompt_for_contact_after_selection(
-        q.message,
-        context,
-        "📞 Оставьте номер телефона, чтобы мастер мог связаться с вами:",
+    await q.message.reply_text(
+        "📞 Нажмите кнопку ниже или отправьте номер в формате +79991234567",
+        reply_markup=phone_keyboard(),
     )
+    return S_PHONE
 
 
 # --- Handlers
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     payload = " ".join(context.args) if context.args else ""
     data = parse_start_payload(payload)
@@ -1615,10 +1688,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
                 reply_markup=services_keyboard(),
             )
             return S_SERVICE
-        await update.effective_chat.send_message(
-            site_prefill_intro_html(context),
-            parse_mode=ParseMode.HTML,
-        )
         return await proceed_after_service_from_message(update, context)
 
     if data.get("mode") == "site_order":
@@ -1649,7 +1718,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
                 context.user_data["other_kind"] = other_kind or "tablet"
                 context.user_data["service"] = ""
                 await update.effective_chat.send_message(
-                    site_prefill_intro_html(context) + "\n\n⏰ Выберите удобное время, когда мастер сможет с вами связаться:",
+                    current_selection_html(context, step="choose_time", show_price=False, show_part=False),
                     parse_mode=ParseMode.HTML,
                     reply_markup=time_keyboard(),
                 )
@@ -1659,11 +1728,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
             context.user_data["device"] = normalize_device(device)
             context.user_data["service"] = site_problem_to_service(data.get("problem", ""))
 
-            await update.effective_chat.send_message(
-                site_prefill_intro_html(context)
-                + "\n\n🧩 Теперь выберите, какую деталь будем ставить:",
-                parse_mode=ParseMode.HTML,
-            )
             return await proceed_after_service_from_message(update, context)
 
     if data.get("mode") == "consult":
@@ -1762,6 +1826,17 @@ async def on_model(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         model = q.data.split(":", 1)[1]
         context.user_data.pop("await_model_manual", None)
         context.user_data["model"] = model
+        if str(context.user_data.get("flow") or "") == "other":
+            await q.edit_message_text(
+                "📝 Опишите проблему в одном сообщении.\nНапример: <b>не включается</b>, <b>нет изображения</b> или <b>сильно греется</b>.",
+                parse_mode=ParseMode.HTML,
+            )
+            await q.message.reply_text(
+                "Можно вернуться назад или открыть главное меню кнопками ниже.",
+                reply_markup=back_text_keyboard(),
+            )
+            return S_PROBLEM
+
         await q.edit_message_text("Выберите нужную услугу:", reply_markup=services_keyboard())
         return S_SERVICE
 
@@ -1897,11 +1972,22 @@ async def on_problem(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
     context.user_data["problem"] = text
     await update.message.reply_text("Готово, всё записал.", reply_markup=ReplyKeyboardRemove())
+
     if flow == "other":
         set_phone_back_target(context, "other_problem")
         await update.effective_chat.send_message(
-            "📞 Оставьте номер телефона, чтобы мастер мог с вами связаться:",
-            reply_markup=phone_keyboard()
+            current_selection_html(context, step="share_phone", show_price=False, show_part=False),
+            parse_mode=ParseMode.HTML,
+            reply_markup=phone_keyboard(),
+        )
+        return S_PHONE
+
+    if flow == "consult":
+        context.user_data["model"] = context.user_data.get("model") or "Консультация"
+        set_phone_back_target(context, "problem")
+        await update.effective_chat.send_message(
+            "📞 Оставьте номер телефона для связи:",
+            reply_markup=phone_keyboard(),
         )
         return S_PHONE
 
@@ -1927,7 +2013,7 @@ async def on_part_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
                 context.user_data.pop("part_bucket_selected", None)
                 context.user_data.pop("part_has_bucket_menu", None)
                 await q.edit_message_text(
-                    selected_service_html(context) + "\n\nВыберите, какую деталь поставить:",
+                    current_selection_html(context, step="choose_part_type", show_part=False),
                     parse_mode=ParseMode.HTML,
                     reply_markup=part_type_keyboard(model, service),
                 )
@@ -1958,22 +2044,25 @@ async def on_part_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             context.user_data.pop("part_has_bucket_menu", None)
             set_phone_back_target(context, "part_type")
             await q.edit_message_text(
-                selected_service_html(context)
-                + f"\n🧩 <b>Деталь:</b> {esc(chosen['label'] if service == 'battery' else compact_detail_text(chosen['label']))}"
-                + f"\n💰 <b>Стоимость:</b> {esc(format_rub(int(chosen['price'])))}",
+                current_selection_html(context, step="share_phone"),
                 parse_mode=ParseMode.HTML,
             )
-            return await prompt_for_contact_after_selection(
-                q.message,
-                context,
-                "📞 Оставьте номер телефона, чтобы подтвердить запись:",
-            )
+            return await prompt_phone_after_callback_message(q)
 
         context.user_data["part_bucket_selected"] = bucket
         context.user_data["part_has_bucket_menu"] = True
+
+        note = f"📂 <b>Категория:</b> {esc(bucket_label(bucket, service))}"
+        if bucket_has_same_price(options):
+            note += f"\n💰 Все варианты стоят <b>{esc(bucket_price_label(options))}</b>"
+
         await q.edit_message_text(
-            selected_service_html(context)
-            + (f"\n\nВы выбрали категорию: <b>{bucket_label(bucket, service)}</b>.\nВсе варианты здесь стоят <b>{esc(bucket_price_label(options))}</b>.\nТеперь выберите точный вариант:" if bucket_has_same_price(options) else f"\n\nВы выбрали категорию: <b>{bucket_label(bucket, service)}</b>.\nТеперь выберите точный вариант:"),
+            current_selection_html(
+                context,
+                step="choose_part_option",
+                show_part=False,
+                extra_note=note,
+            ),
             parse_mode=ParseMode.HTML,
             reply_markup=part_options_keyboard(model, service, bucket),
         )
@@ -1997,9 +2086,7 @@ async def on_part_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         context.user_data.pop("part_has_bucket_menu", None)
         set_phone_back_target(context, f"part_options:{bucket}")
         await q.edit_message_text(
-            selected_service_html(context)
-            + f"\n🧩 <b>Деталь:</b> {esc(chosen['label'] if service == 'battery' else compact_detail_text(chosen['label']))}"
-            + f"\n💰 <b>Стоимость:</b> {esc(format_rub(int(chosen['price'])))}",
+            current_selection_html(context, step="share_phone"),
             parse_mode=ParseMode.HTML,
         )
         await q.message.reply_text(
@@ -2009,6 +2096,14 @@ async def on_part_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         return S_PHONE
 
     return S_PART_CHOICE
+
+
+async def prompt_phone_after_callback_message(q) -> int:
+    await q.message.reply_text(
+        "📞 Оставьте номер телефона, чтобы подтвердить запись:",
+        reply_markup=phone_keyboard(),
+    )
+    return S_PHONE
 
 
 async def on_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -2037,12 +2132,16 @@ async def on_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     if should_skip_date_step(context):
         context.user_data["date"] = ""
         await update.effective_chat.send_message(
-            "⏰ Когда удобно, чтобы мастер связался с вами?", reply_markup=time_keyboard()
+            current_selection_html(context, step="choose_time"),
+            parse_mode=ParseMode.HTML,
+            reply_markup=time_keyboard(),
         )
         return S_TIME
 
     await update.effective_chat.send_message(
-        "🗓️ Выберите удобную дату записи:", reply_markup=date_keyboard()
+        current_selection_html(context, step="choose_date"),
+        parse_mode=ParseMode.HTML,
+        reply_markup=date_keyboard(),
     )
     return S_DATE
 
@@ -2061,7 +2160,11 @@ async def on_date(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     if q.data.startswith("date:"):
         iso = q.data.split(":", 1)[1]
         context.user_data["date"] = iso
-        await q.edit_message_text("⏰ Выберите удобное время:", reply_markup=time_keyboard())
+        await q.edit_message_text(
+            current_selection_html(context, step="choose_time"),
+            parse_mode=ParseMode.HTML,
+            reply_markup=time_keyboard(),
+        )
         return S_TIME
 
     return S_DATE
@@ -2078,7 +2181,11 @@ async def on_time(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
                 "📞 Оставьте номер телефона ещё раз:", reply_markup=phone_keyboard()
             )
             return S_PHONE
-        await q.edit_message_text("🗓️ Выберите дату записи:", reply_markup=date_keyboard())
+        await q.edit_message_text(
+            current_selection_html(context, step="choose_date"),
+            parse_mode=ParseMode.HTML,
+            reply_markup=date_keyboard(),
+        )
         return S_DATE
 
     if q.data == "time:manual":
@@ -2114,7 +2221,11 @@ async def on_time_manual_text(update: Update, context: ContextTypes.DEFAULT_TYPE
     if is_back_text(t):
         context.user_data.pop("await_time_manual", None)
         await update.message.reply_text("Вернул к выбору времени.", reply_markup=ReplyKeyboardRemove())
-        await update.effective_chat.send_message("⏰ Выберите удобное время:", reply_markup=time_keyboard())
+        await update.effective_chat.send_message(
+            current_selection_html(context, step="choose_time"),
+            parse_mode=ParseMode.HTML,
+            reply_markup=time_keyboard(),
+        )
         return S_TIME
 
     if not re.match(r"^\d{1,2}:\d{2}$", t):
@@ -2154,7 +2265,11 @@ async def on_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         return await show_support_entry_from_callback(q, context, "confirm")
 
     if q.data == "confirm:back":
-        await q.edit_message_text("⏰ Выберите удобное время:", reply_markup=time_keyboard())
+        await q.edit_message_text(
+            current_selection_html(context, step="choose_time"),
+            parse_mode=ParseMode.HTML,
+            reply_markup=time_keyboard(),
+        )
         return S_TIME
 
     if q.data == "confirm:yes":
@@ -2269,7 +2384,6 @@ async def on_support_callback(update: Update, context: ContextTypes.DEFAULT_TYPE
     return S_SUPPORT
 
 
-
 async def orphan_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     q = update.callback_query
     if not q:
@@ -2284,6 +2398,7 @@ async def orphan_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         await q.edit_message_text("Меню обновлено. Выберите устройство:", reply_markup=device_keyboard())
     except Exception:
         await q.message.reply_text("Меню обновлено. Выберите устройство:", reply_markup=device_keyboard())
+
 
 async def admin_reply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     cfg = get_cfg(context)
