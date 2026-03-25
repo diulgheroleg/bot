@@ -462,12 +462,68 @@ def resolve_model_name(device: str, query: str) -> Tuple[Optional[str], List[str
 
 # --- Support relay mapping
 
-def remember_forward(context: ContextTypes.DEFAULT_TYPE, forwarded_message_id: int, user_id: int):
-    context.bot_data.setdefault("fw_map", {})[forwarded_message_id] = user_id
+LEAD_ID_RE = re.compile(r"RB-\d{8}-\d{6}-\d+")
+
+
+def remember_forward(
+    context: ContextTypes.DEFAULT_TYPE,
+    forwarded_message_id: int,
+    user_id: int,
+    lead_id: str = "",
+) -> None:
+    context.bot_data.setdefault("fw_map", {})[forwarded_message_id] = {
+        "user_id": user_id,
+        "lead_id": lead_id or "",
+    }
 
 
 def lookup_forward(context: ContextTypes.DEFAULT_TYPE, forwarded_message_id: int) -> Optional[int]:
-    return context.bot_data.get("fw_map", {}).get(forwarded_message_id)
+    data = context.bot_data.get("fw_map", {}).get(forwarded_message_id)
+    if isinstance(data, dict):
+        return data.get("user_id")
+    if isinstance(data, int):
+        return data
+    return None
+
+
+def remember_lead(context: ContextTypes.DEFAULT_TYPE, lead_id: str, user_id: int) -> None:
+    if not lead_id:
+        return
+    context.bot_data.setdefault("lead_map", {})[lead_id] = user_id
+
+
+def lookup_lead(context: ContextTypes.DEFAULT_TYPE, lead_id: str) -> Optional[int]:
+    return context.bot_data.get("lead_map", {}).get(lead_id)
+
+
+def extract_lead_id_from_text(text: str) -> str:
+    if not text:
+        return ""
+    m = LEAD_ID_RE.search(text)
+    return m.group(0) if m else ""
+
+
+def resolve_reply_target_user_id(context: ContextTypes.DEFAULT_TYPE, reply_msg) -> Optional[int]:
+    if not reply_msg:
+        return None
+
+    user_id = lookup_forward(context, reply_msg.message_id)
+    if user_id:
+        return user_id
+
+    text = ""
+    if getattr(reply_msg, "text", None):
+        text = reply_msg.text or ""
+    elif getattr(reply_msg, "caption", None):
+        text = reply_msg.caption or ""
+
+    lead_id = extract_lead_id_from_text(text)
+    if lead_id:
+        user_id = lookup_lead(context, lead_id)
+        if user_id:
+            return user_id
+
+    return None
 
 
 # --- Catalog helpers
@@ -2279,6 +2335,7 @@ async def on_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         try:
             record = build_lead_record(context, user)
             lead_id = save_lead(record)
+            remember_lead(context, lead_id, user.id)
         except Exception:
             logger.exception("Failed to save lead")
             await q.edit_message_text(
@@ -2296,7 +2353,7 @@ async def on_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
                 text=build_admin_text(context, user, lead_id),
                 parse_mode=ParseMode.HTML,
             )
-            remember_forward(context, sent.message_id, user.id)
+            remember_forward(context, sent.message_id, user.id, lead_id=lead_id)
             admin_notified = True
         except Exception:
             logger.exception("Failed to send lead to admin")
@@ -2307,9 +2364,16 @@ async def on_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
             "Мастер получил ваши данные и свяжется с вами в ближайшее время."
         )
         if not admin_notified:
-            message += "\n\n⚠️ Заявка сохранена, но я не смог автоматически отправить её мастеру. Проверьте <code>ADMIN_USER_ID</code> и при необходимости напишите мастеру через кнопку ниже."
+            message += (
+                "\n\n⚠️ Заявка сохранена, но я не смог автоматически отправить её мастеру. "
+                "Проверьте <code>ADMIN_USER_ID</code> и при необходимости напишите мастеру через кнопку ниже."
+            )
 
-        await q.edit_message_text(message, parse_mode=ParseMode.HTML, reply_markup=support_keyboard("submitted"))
+        await q.edit_message_text(
+            message,
+            parse_mode=ParseMode.HTML,
+            reply_markup=support_keyboard("submitted"),
+        )
         set_support_return(context, "submitted")
         context.user_data["last_lead_id"] = lead_id
         return S_SUPPORT
@@ -2339,18 +2403,22 @@ async def on_support(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
     cfg = get_cfg(context)
     user = update.effective_user
+    lead_id = str(context.user_data.get("last_lead_id") or "")
+
     header = (
         f"💬 Сообщение от клиента @{user.username}"
         if user and user.username
         else f"💬 Сообщение от клиента id:{user.id}"
     )
-    if context.user_data.get("last_lead_id"):
-        header += f"\n🆔 Заявка: {context.user_data['last_lead_id']}"
+    if lead_id:
+        header += f"\n🆔 Заявка: {lead_id}"
 
     delivered = False
     try:
         sent = await context.bot.send_message(cfg.admin_user_id, f"{header}\n\n{text}")
-        remember_forward(context, sent.message_id, user.id)
+        remember_forward(context, sent.message_id, user.id, lead_id=lead_id)
+        if lead_id:
+            remember_lead(context, lead_id, user.id)
         delivered = True
     except Exception:
         logger.exception("Failed to send support message to admin")
@@ -2404,15 +2472,28 @@ async def admin_reply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     cfg = get_cfg(context)
     if not cfg or update.effective_user.id != cfg.admin_user_id:
         return
-    if not update.message.reply_to_message:
+
+    msg = update.message
+    if not msg or not msg.reply_to_message:
         return
 
-    replied_id = update.message.reply_to_message.message_id
-    user_id = lookup_forward(context, replied_id)
+    user_id = resolve_reply_target_user_id(context, msg.reply_to_message)
     if not user_id:
+        await update.message.reply_text(
+            "Не удалось определить клиента для ответа. Ответьте свайпом/реплаем на сообщение этого клиента."
+        )
         return
 
-    await context.bot.send_message(chat_id=user_id, text=f"🧑‍🔧 Мастер:\n{update.message.text}")
+    reply_text = (msg.text or "").strip()
+    if not reply_text:
+        await update.message.reply_text("Сейчас поддерживаются текстовые ответы мастера.")
+        return
+
+    try:
+        await context.bot.send_message(chat_id=user_id, text=f"🧑‍🔧 Мастер:\n{reply_text}")
+    except Exception:
+        logger.exception("Failed to deliver admin reply to user")
+        await update.message.reply_text("Не удалось отправить ответ клиенту.")
 
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
